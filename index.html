@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlgaeDelights - Healthy Cookies & Jellies</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Coral Crunchies & Chewies</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#cart" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a></li>
+                <li class="auth-buttons">
+                    <button class="btn secondary" onclick="openModal('signin-modal')">Sign In</button>
+                    <button class="btn primary" onclick="openModal('signup-modal')">Sign Up</button>
+                </li>
+                <li class="user-profile hidden">
+                    <span class="username"></span>
+                    <button class="btn secondary" onclick="logout()">Logout</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Discover the Power of <span class="highlight">Algae</span></h1>
+            <p>Experience our unique collection of healthy cookies and jellies made with Gracilaria Corticata, packed with essential nutrients and antioxidants.</p>
+            <div class="cta-buttons">
+                <a href="#products" class="btn primary">Shop Now</a>
+                <a href="#benefits" class="btn secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <h2>Health Benefits of Gracilaria Corticata</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-star"></i>
+                    <h3>Rich in Nutrients</h3>
+                    <p>Packed with essential vitamins, minerals, and amino acids</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Antioxidant Properties</h3>
+                    <p>Contains polyphenols and flavonoids for cellular health</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Heart Healthy</h3>
+                    <p>Omega-3 and Omega-6 fatty acids support cardiovascular health </p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Sustainable Source</h3>
+                    <p>Environmentally friendly and renewable ingredient source</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Boosts Brain Function</h3>
+                    <p>Supports cognitive health and improves memory</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-bone"></i>
+                    <h3>Strengthens Bones</h3>
+                    <p>Rich in calcium and magnesium for bone health</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-syringe"></i>
+                    <h3>Anti-Diabetic</h3>
+                    <p>Helps regulate blood sugar levels and improve insulin sensitivity</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-weight"></i>
+                    <h3>Reduces Obesity</h3>
+                    <p>Aids in weight management by promoting a healthy metabolism</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="products">
+        <div class="container">
+            <h2>Our Products</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="cookies.jpg" alt="Cookie 1">
+                    <h3>Cwell Cookies</h3>
+                    <p class="paragraph">Gracilaria Corticata Millet Cookies blend nutrient-rich millet flour with antioxidant red seaweed. Enjoy a crisp, gluten-free snack with a unique umami twist.  
+                        Perfect for supporting gut health and sustainable living.</p>
+                    <div class="price">₹<span>50</span></div>
+                    <button class="btn primary" onclick="addToCart('Algae Cookies', 9.99)">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="gummies.jpg" alt="Cookie 2">
+                    <h3>Gracilaria Corticata & Honey Gummies</h3>
+                    <p class="paragraph">a nutritious, naturally sweet treat packed with minerals and antioxidants. Made with pure honey and natural colors, they support gut health and immunity in every bite!</p>
+                    <div class="price">₹<span>30</span></div>
+                    <button class="btn primary" onclick="addToCart('Algae Chocolate Cookies', 12.99)">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="jellies.jpg" alt="Jelly 1">
+                    <h3>ocean Burst</h3>
+                    <p class="paragraph">A vibrant, nutrient-packed treat! Made with the goodness of Gracilaria corticata and natural ingredients, this refreshing jello is rich in minerals, antioxidants, and supports gut health. Enjoy a delicious, guilt-free snack that’s as healthy as it is flavorful!</p>
+                    <div class="price">₹<span>20</span></div>
+                    <button class="btn primary" onclick="addToCart('Algae Fruit Jellies', 14.99)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sign In Modal -->
+    <div id="signin-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signin-modal')">&times;</span>
+            <h2>Sign In</h2>
+            <form id="signin-form" onsubmit="handleSignIn(event)">
+                <div class="form-group">
+                    <label for="signin-email">Email</label>
+                    <input type="email" id="signin-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signin-password">Password</label>
+                    <input type="password" id="signin-password" required>
+                </div>
+                <button type="submit" class="btn primary">Sign In</button>
+                <p>Don't have an account? <a href="#" onclick="switchModal('signin-modal', 'signup-modal')">Sign Up</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signup-modal')">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="signup-form" onsubmit="handleSignUp(event)">
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" required>
+                </div>
+                <button type="submit" class="btn primary">Sign Up</button>
+                <p>Already have an account? <a href="#" onclick="switchModal('signup-modal', 'signin-modal')">Sign In</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cart-modal')">&times;</span>
+            <h2>Shopping Cart</h2>
+            <div class="cart-items">
+                <!-- Cart items will be dynamically loaded here -->
+            </div>
+            <div class="cart-total">
+                <p>Total: ₹<span id="cart-total-amount">0.00</span></p>
+            </div>
+            <button class="btn primary" id="checkout-btn" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AlgaeDelights. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
